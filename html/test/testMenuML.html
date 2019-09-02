@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MenuML</title>
+
+ 	<script type='text/javascript' src='lib/libBase64.js'></script>
+	<script type='text/javascript' src='k1/libK1_Topol.js'></script>
+	<script type='text/javascript' src='k1/libK1_Clases.js'></script>
+	<script type='text/javascript' src='k1/libK1_Utils.js'></script>
+	<script type='text/javascript' src='k1/libK1_Ajax.js'></script>
+	<script type='text/javascript' src='k1/libK1_Sesion.js'></script>
+	<script type='text/javascript' src='k1/libK1_Idioma.js'></script>
+	<script type='text/javascript' src='js/app0_VGlob.js'></script>
+
+<script type="text/javascript">
+	function ecoCargaMenuML(xhr){
+		alert(xhr.responseText);
+		r$('menu').innerHTML = JSON.parse(xhr.responseText)[0].meta.tag;
+		alert('OK');
+	}
+
+	function cargaMenuML(){
+		ajaxGetMenusML(ecoCargaMenuML);
+
+	}
+</script>
+</head>
+<body onload="cargaMenuML()">
+<h1>Test Menu ML</h1>
+<div id="menu">
+</div>
+</body>
+</html>

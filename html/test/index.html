@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Index</title>
+ 	<script type='text/javascript' src='lib/libBase64.js'></script>
+	<script type='text/javascript' src='k1/libK1_Topol.js'></script>
+	<script type='text/javascript' src='k1/libK1_Clases.js'></script>
+	<script type='text/javascript' src='k1/libK1_Utils.js'></script>
+	<script type='text/javascript' src='k1/libK1_Ajax.js'></script>
+	<script type='text/javascript' src='k1/libK1_Sesion.js'></script>
+	<script type='text/javascript' src='js/app0_VGlob.js'></script>
+
+	<script>
+		function ecoValidacion(ok,tipo){
+			console.log(ok+':'+tipo);
+			if (ok) window.location = 'testLogin.html';
+		}
+		function validaUsuario(){
+			var usr = r$('usr').value;
+			var pwd = r$('pwd').value;
+			console.log(usr+':'+pwd);
+			validaUser(usr,pwd,ecoValidacion,'NO');
+		}
+	</script>
+</head>
+<body>
+	<form action="javascript:validaUsuario()">
+		<input type="text" name="usr" id="usr">
+		<input type="text" name="pwd" id="pwd">
+		<input type="submit" name="submit" id="submit">
+	</form>
+</body>
+</html>
