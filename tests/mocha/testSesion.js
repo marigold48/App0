@@ -15,7 +15,7 @@ Connected to Database
 */
 
 var assert = require("chai").assert;
-var allK1 = require("/home/pepe/RETO/kernels/kernel1/test/todoJunto.js");
+var allK1 = require("/home/pepe/RETO/kernels/kernel1/alfa/todoJunto.js");
 
 var resp = null;
 

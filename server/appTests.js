@@ -15,7 +15,8 @@ var app = express();
 
 //------------------------------------------------------------------- Directories
 app.use("/", express.static("./apps/App0/html/test"));
-app.use("/k1", express.static("./kernels/kernel1/test"));
+app.use("/pbas", express.static("./apps/App0/html/pbas"));
+app.use("/k1", express.static("./kernels/kernel1/alfa"));
 app.use("/lib", express.static("./libs"));
 app.use("/fonts", express.static("./fonts"));
 

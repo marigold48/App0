@@ -1,5 +1,5 @@
 var assert = require("chai").assert;
-var allK1 = require("/home/pepe/RETO/kernels/kernel1/test/todoJunto.js");
+var allK1 = require("/home/pepe/RETO/kernels/kernel1/alfa/todoJunto.js");
 
 	var resp = null;
 	var menuML = null;
@@ -30,11 +30,11 @@ var allK1 = require("/home/pepe/RETO/kernels/kernel1/test/todoJunto.js");
 	   });  
 
 		it("Check Crea Menu ML: ", function() {
-	    	var opc1 = new allK1.rOpcML('Opcion 1','opt1'); 
-	    	var opc2 = new allK1.rOpcML('Opcion 2','opt2');
-	    	var opc3 = new allK1.rOpcML('Opcion 3','opt3');
-	    	var opc4 = new allK1.rOpcML('Opcion 4','opt4');
-	    	menuML   = new allK1.rMenuML('TESTS',[opc1,opc2,opc3,opc4]);
+			var opc1 = new allK1.rTxtML('Opcion 1','opt1'); 
+			var opc2 = new allK1.rTxtML('Opcion 2','opt2');
+			var opc3 = new allK1.rTxtML('Opcion 3','opt3');
+			var opc4 = new allK1.rTxtML('Opcion 4','opt4');
+			menuML   = new allK1.rMenuML('TESTS',[opc1,opc2,opc3,opc4]);
 	   	assert.equal(menuML.meta.iam, 'rMenuML');
 	   	assert.equal(menuML.nodos.length,4);
 	   });
@@ -62,29 +62,27 @@ var allK1 = require("/home/pepe/RETO/kernels/kernel1/test/todoJunto.js");
 	   });  
 
 		it("Check Crea Texto ML: ", function() {
-	    	var txt1 = new allK1.rTxtML('Texto 1','txt1'); 
-	    	txt1.obj["ES"] = 'Me fui a vivir al bosque, porque quería vivir deliberadamente solo,';
-	    	var txt2 = new allK1.rTxtML('Texto 2','txt2');
-	    	txt2.obj["ES"] = 'para hacer frente a los hechos esenciales de la vida,';
-	    	var txt3 = new allK1.rTxtML('Texto 3','txt3');
-	    	txt3.obj["ES"] = 'y ver si así podía aprender ';
-	    	var txt4 = new allK1.rTxtML('Texto 4','txt4');
-	    	txt4.obj["ES"] = 'lo que tenía que enseñar.';
+			var txt1 = new allK1.rTxtML('Texto 1','txt1'); 
+			txt1.lng["ES"] = 'Me fui a vivir al bosque, porque quería vivir deliberadamente solo,';
+			var txt2 = new allK1.rTxtML('Texto 2','txt2');
+			txt2.lng["ES"] =  'para hacer frente a los hechos esenciales de la vida,';
+			var txt3 = new allK1.rTxtML('Texto 3','txt3');
+			txt3.lng["ES"] =  'y ver si así podía aprender lo que tenía que enseñar.';
 
-	    	textoML   = new allK1.rTextsML('TESTS',[txt1,txt2,txt3,txt4]);
-		  	assert.equal(textoML.meta.iam, 'rTextsML');
-		  	assert.equal(textoML.nodos.length,4);
+			textoML   = new allK1.rTextosML('TESTS',[txt1,txt2,txt3]);
+		  	assert.equal(textoML.meta.iam, 'rTextosML');
+		  	assert.equal(textoML.nodos.length,3);
 	   });
 
 		it("Check graba Texto ML: ", function() {
 			var params = allK1.vgApp.paramsXHR;
 			params.base = '/test';
 			params.eco = ecoTestPost; 
-			params.iam = 'rTextsML';
+			params.iam = 'rTextosML';
 			params.txt = allK1.o2s(textoML.clase2ObjDB());
 			allK1.ajaxPostTopol(params,'NO');
-	   	assert.equal(textoML.meta.iam, 'rTextsML');
-			assert.equal(menuML.nodos.length,4);
+	   	assert.equal(textoML.meta.iam, 'rTextosML');
+			assert.equal(menuML.nodos.length,3);
 	   });  
 
 		it("Check carga Texto ML: ", function() {
@@ -94,8 +92,8 @@ var allK1 = require("/home/pepe/RETO/kernels/kernel1/test/todoJunto.js");
 			params.topolId = topolId;
 
 			allK1.ajaxGet1Topol(params,'NO');
-	   	assert.equal(textoML.meta.iam, 'rTextsML');
-			assert.equal(menuML.nodos.length,4);
+	   	assert.equal(textoML.meta.iam, 'rTextosML');
+			assert.equal(menuML.nodos.length,3);
 	   });  
 
 	});  

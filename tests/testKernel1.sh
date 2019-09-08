@@ -52,7 +52,7 @@ var vgApp = {
 		base   : '/shell/sqlite',
 		userDB : 'usersTest.sqlite',
 		sessDB : 'sessTest.sqlite',
-		pathDB : 'apps/App0/sqlite/test',
+		pathDB : 'apps/App0/sqlite/alfa',
 		stmtDB : '',
 	},
 	encript : {
@@ -75,7 +75,7 @@ cat $dir/exports.js  >> $dir/todoJunto.js
 
 #-------------------------------------------------------------------- Creacion BD users 
 # para test ajaxCmdShell
-rm ../sqlite/test/usersTest.sqlite
+rm ../sqlite/alfa/usersTest.sqlite
 md5=$(echo "tester.tester" | md5sum)
 md5="${md5:0:32}"
 
@@ -93,11 +93,11 @@ cat <<EOT > /tmp/usuarios.sql
 	('TESTS_Kernel',0,'tester','$md5','TESTS','','ES');
 EOT
 
-cat /tmp/usuarios.sql | sqlite3 ../sqlite/test/usersTest.sqlite
+cat /tmp/usuarios.sql | sqlite3 ../sqlite/alfa/usersTest.sqlite
 
 #-------------------------------------------------------------------- Creacion BD sesiones 
 # para test ajaxCmdShell
-rm ../sqlite/test/sessTest.sqlite
+rm ../sqlite/alfa/sessTest.sqlite
 cat <<EOT > /tmp/sesiones.sql
 	CREATE TABLE sesiones 
 	(sesion_id number(10) unique,
@@ -108,13 +108,16 @@ cat <<EOT > /tmp/sesiones.sql
 	keo verchar(5));
 EOT
 
-cat /tmp/sesiones.sql | sqlite3 ../sqlite/test/sessTest.sqlite
+cat /tmp/sesiones.sql | sqlite3 ../sqlite/alfa/sessTest.sqlite
 
 #-------------------------------------------------------------------- Lanzar Mocha tests
 cd ~/RETO
 
 cat <<EOT > /tmp/removeDocsML.sql
 	db.topols.remove({"meta.iam":{\$eq:"rConjt"}});
+	db.topols.remove({"meta.iam":{\$eq:"rLista"}});
+	db.topols.remove({"meta.iam":{\$eq:"rArbol"}});
+	db.topols.remove({"meta.iam":{\$eq:"rGrafo"}});
 	db.topols.remove({"meta.iam":{\$eq:"rMenuML"}});
 	db.topols.remove({"meta.iam":{\$eq:"rTextsML"}});
 	db.topols.remove({"meta.iam":{\$eq:"rTextML"}});
@@ -122,10 +125,10 @@ EOT
 
 cat /tmp/removeDocsML.sql | mongo test
 
-npm run testK1_Utils
+#npm run testK1_Utils
 npm run testK1_Topol
 npm run testK1_Ajax
-npm run testK1_Sesion
-npm run testK1_Clases
+#npm run testK1_Sesion
+#npm run testK1_Clases
 exit 0
 

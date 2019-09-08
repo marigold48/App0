@@ -15,9 +15,14 @@
 
 <script type="text/javascript">
 	function ecoLoadMenu(){
-		var raiz = vgk.arbolML.getRaiz();
-		alert(raiz.tag);
+		var nodos = vgk.arbolML.nodos;
+		nodos.map(function(nodo){
+			console.log(o2s(nodo));
+			r$(nodo.cod).innerHTML = nodo.tag;
+		})
+		alert(vgk.arbolML.meta.tag);
 	}
+
 
 	function ecoListaMenuML(xhr){
 		var lista = JSON.parse(xhr.responseText);
@@ -25,15 +30,42 @@
 		get1MenuML(lista[0]._id);
 	}
 
-	function cargaLista(){
+	function ecoLoadTexts(){
+		var nodos = vgk.textsML.nodos;
+		nodos.map(function(nodo){
+			console.log(o2s(nodo));
+			r$(nodo.cod).innerHTML = nodo.obj["ES"];
+		})
+		alert(vgk.textsML.meta.tag);
+	}
+	function ecoListaTextsML(xhr){
+		var lista = JSON.parse(xhr.responseText);
+		vgk.postGet1TextsML = ecoLoadTexts;
+		get1TextsML(lista[0]._id);
+	}
+
+	function cargaListas(){
 		ajaxGetMenusML(ecoListaMenuML);
+		ajaxGetTextsML(ecoListaTextsML);
 
 	}
 </script>
 </head>
-<body onload="cargaLista()">
-<h1>Test Menu ML</h1>
+<body onload="cargaListas()">
 <div id="menu">
+	<ul>
+		<option id="opt1">Uno</option>
+		<option id="opt2">Dos</option>
+		<option id="opt3">Tres</option>
+		<option id="opt4">Cuatro</option>
+	</ul>
+</div>
+<h1>Test Menu ML</h1>
+<div>
+	<span id="txt1">Lorem ipsum</span>
+	<span id="txt2">Lorem ipsum</span>
+	<span id="txt3">Lorem ipsum</span>
+	<span id="txt4">Lorem ipsum</span>
 </div>
 </body>
 </html>
