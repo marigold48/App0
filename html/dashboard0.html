@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name='viewport' content='width=device-width, user-scalable=no'>
+	<title>XYZ</title>
+<!--  ===================== LOCAL LIBS INI =====================  -->
+  <link rel="stylesheet" href="lib/bootstrap_335.min.css">
+  <link rel="stylesheet" href="lib/font-awesome_430.min.css">
+  <script src="lib/jquery_321.min.js"></script>
+  <script src="lib/bootstrap_337.min.js"></script>
+  <script src="lib/vue_2517.js"></script>
+	<script type='text/javascript' src='lib/libBase64.js'></script>
+<!--  ===================== LOCAL LIBS FIN =====================  -->
+
+
+	<link rel="stylesheet" href="css/vueModal.css">
+
+	<script type='module' src='js/dashboard0.js'></script>
+</head>
+<body>
+<!--  ===================== MENU INI ===========================  -->
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header"><a class="navbar-brand" href="#">Agenda tasks</a></div>
+	    <ul class="nav navbar-nav">
+	      <li><a href="javascript:goPag('ABC')">ABC</a></li>
+	      <li><a href="javascript:goPag('XYZ')">XYZ</a></li>
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span id="DD1"> DropDown 1</span><span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="javascript:DD1A()">DropDown 1A</a></li>
+						<li><a href="javascript:DD1B()">DropDown 1B</a></li>
+						<li><a href="javascript:DD1C()">DropDown 1C</a></li>
+					</ul>
+				</li>
+	    </ul><!-- navbar-nav -->
+
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-user">&nbsp;</i><span id="usrMenu"> User</span><span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="javascript:cambiaPwdUser()"><span id="CHPWD">Cambiar password</span></a></li>
+						<li><a href="javascript:cambiaKeoUser()"><span id="CHKEO">Cambiar idioma</span></a></li>
+						<li><a href="javascript:cierraSesion()"><span id="EXIT">Cerrar sesión**</span></a></li>
+					</ul>
+				</li><!-- dropdown -->
+			</ul><!-- navbar-right -->
+	  </div><!-- container-fluid -->
+	</nav> <!-- navbar-inverse -->
+<!--  ===================== MENU FIN ===========================  -->
+
+<!--  ===================== BODY INI ===========================  -->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-xx">
+			</div> <!-- col-md-xx -->
+		</div> <!-- row -->
+	</div><!-- container -->
+<!--  ===================== BODY FIN ===========================  -->
+
+<!--  ===================== MODAL INI ==========================  -->
+	<div id="appModal">
+		<modal v-bind:clase="modo" v-if="show" @close="show = false" @graba="graba()" @borra="borra()">
+			<h3 slot="header">{{conds.retol}}</h3>
+
+			<div slot="body">
+					<form	v-if="edit_t === 'USER'" class="form">
+						<input class="form-control" v-model="item.tag" type="text" name="usr"	placeholder="Usuario">
+						<span class="error" v-if="(!conds.valid.tag.ok)">{{conds.valid.tag.txt}}</span>
+						<input class="form-control" v-model="item.obj.pwd" type="text" name="pwd" placeholder="Password">
+						<span class="error" v-if="(!conds.valid.pwd.ok)">{{conds.valid.pwd.txt}}</span>
+						<input class="form-control" v-model="item.obj.conf" type="text" name="conf" placeholder="Confirmac.">
+						<span class="error" v-if="(!conds.valid.conf.ok)">{{conds.valid.conf.txt}}</span>
+					</form>
+			</div> <!-- slot="body" -->
+		</modal>
+	</div><!-- appModal -->
+
+<!--  ===================== MODAL FIN ==========================  -->
+
+</body>
+</html>
